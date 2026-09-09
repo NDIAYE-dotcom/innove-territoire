@@ -19,7 +19,7 @@ import {
   fetchMeetLink,
   upsertMeetLink,
 } from '../../services/formationService'
-import { uploadFile, getPublicUrl } from '../../services/storageService'
+import { uploadFile } from '../../services/storageService'
 import QuizEditorModal from './QuizEditorModal'
 import './AdminFormationEditor.css'
 
@@ -357,7 +357,11 @@ function LessonFormModal({ isOpen, onClose, onSaved, formationId, moduleId, less
     const { path, error: uploadError } = await uploadFile('course-materials', formationId, file)
     setUploading(false)
     if (!uploadError && path) {
-      setForm((c) => ({ ...c, pdf_url: getPublicUrl('course-materials', path) }))
+      // "course-materials" est un bucket privé (RLS : inscrits approuvés ou
+      // SuperAdmin) — on stocke le CHEMIN, pas une URL publique qui serait un
+      // lien mort. La salle de cours génère une URL signée à la demande,
+      // vérifiée par les policies du bucket au moment de la consultation.
+      setForm((c) => ({ ...c, pdf_url: path }))
     }
   }
 

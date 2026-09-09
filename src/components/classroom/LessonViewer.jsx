@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react'
 import Button from '../common/Button'
 import LessonQuiz from './LessonQuiz'
+import { getSignedUrl } from '../../services/storageService'
 import './LessonViewer.css'
 
 function isDirectVideoFile(url) {
@@ -21,6 +23,31 @@ function renderContentLine(line, index) {
 
 function hasQuiz(lesson) {
   return Array.isArray(lesson.quizzes) ? lesson.quizzes.length > 0 : Boolean(lesson.quizzes)
+}
+
+// "course-materials" est un bucket privé — lesson.pdf_url stocke le chemin,
+// pas une URL directement utilisable. On résout une URL signée à l'affichage
+// (remonté via key sur `path`, voir Profile.jsx pour la même convention).
+function PdfLink({ path }) {
+  const [url, setUrl] = useState(null)
+
+  useEffect(() => {
+    let isMounted = true
+    getSignedUrl('course-materials', path).then(({ url: signedUrl }) => {
+      if (isMounted) setUrl(signedUrl)
+    })
+    return () => {
+      isMounted = false
+    }
+  }, [path])
+
+  if (!url) return null
+
+  return (
+    <a className="lesson-viewer-resource-link" href={url} target="_blank" rel="noreferrer">
+      Voir le document PDF →
+    </a>
+  )
 }
 
 function LessonViewer({ lesson, moduleTitle, lessonNumber, resources, isCompleted, onToggleComplete, toggling, onQuizSubmitted }) {
@@ -72,11 +99,7 @@ function LessonViewer({ lesson, moduleTitle, lessonNumber, resources, isComplete
         <div className="lesson-viewer-content">{lesson.content.split('\n').map(renderContentLine)}</div>
       )}
 
-      {lesson.pdf_url && (
-        <a className="lesson-viewer-resource-link" href={lesson.pdf_url} target="_blank" rel="noreferrer">
-          Voir le document PDF →
-        </a>
-      )}
+      {lesson.pdf_url && <PdfLink key={lesson.pdf_url} path={lesson.pdf_url} />}
 
       {lesson.external_link && (
         <a className="lesson-viewer-resource-link" href={lesson.external_link} target="_blank" rel="noreferrer">

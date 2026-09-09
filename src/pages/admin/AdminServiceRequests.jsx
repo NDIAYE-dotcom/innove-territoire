@@ -13,6 +13,7 @@ import {
   sendAdminMessage,
 } from '../../services/serviceRequestService'
 import { SERVICE_REQUEST_STATUS, getStatusMeta } from '../../utils/statusLabels'
+import { getSignedUrl } from '../../services/storageService'
 import '../client/MyMessages.css'
 
 const STATUS_OPTIONS = Object.keys(SERVICE_REQUEST_STATUS)
@@ -134,6 +135,8 @@ function RequestDetailModalContent({ request, onClose, onUpdated, adminId }) {
   const [sending, setSending] = useState(false)
   const [statusValue, setStatusValue] = useState(request.status)
   const [statusSaving, setStatusSaving] = useState(false)
+  const [openingAttachment, setOpeningAttachment] = useState(false)
+  const [attachmentError, setAttachmentError] = useState('')
 
   useEffect(() => {
     fetchServiceRequestMessages(request.id).then(({ data, error }) => {
@@ -149,6 +152,28 @@ function RequestDetailModalContent({ request, onClose, onUpdated, adminId }) {
     const { error } = await updateServiceRequestStatus(request.id, newStatus)
     setStatusSaving(false)
     if (!error) onUpdated()
+  }
+
+  const handleOpenAttachment = async () => {
+    // Ouvre l'onglet tout de suite (synchrone, dans le même geste utilisateur)
+    // puis y navigue une fois l'URL signée prête — un window.open() après un
+    // await est fréquemment bloqué par les navigateurs comme pop-up. Note :
+    // passer "noopener" ici ferait retourner null (pas de handle à naviguer
+    // ensuite) — on l'omet volontairement pour ce cas précis.
+    const tab = window.open('', '_blank')
+    setOpeningAttachment(true)
+    setAttachmentError('')
+    // Le bucket "documents" est privé — attachment_url stocke le chemin, pas
+    // une URL publique (qui produirait un lien mort/404, RLS bloquant sans
+    // signature). On génère une URL signée à la demande, valable 1h.
+    const { url, error } = await getSignedUrl('documents', request.attachment_url)
+    setOpeningAttachment(false)
+    if (error || !url || !tab) {
+      tab?.close()
+      setAttachmentError("Impossible d'ouvrir ce fichier.")
+      return
+    }
+    tab.location.href = url
   }
 
   const handleSendReply = async (event) => {
@@ -217,10 +242,11 @@ function RequestDetailModalContent({ request, onClose, onUpdated, adminId }) {
           <div>
             <label>Pièce jointe</label>
             <p>
-              <a href={request.attachment_url} target="_blank" rel="noreferrer" className="admin-link-action">
-                Ouvrir le fichier
-              </a>
+              <button type="button" className="admin-link-action" onClick={handleOpenAttachment} disabled={openingAttachment}>
+                {openingAttachment ? 'Ouverture...' : 'Ouvrir le fichier'}
+              </button>
             </p>
+            {attachmentError && <p className="form-error">{attachmentError}</p>}
           </div>
         )}
 

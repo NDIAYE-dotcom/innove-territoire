@@ -22,6 +22,16 @@ export function getPublicUrl(bucket, path) {
   return supabase.storage.from(bucket).getPublicUrl(path).data.publicUrl
 }
 
+// Pour les buckets PRIVÉS (documents, course-materials) : getPublicUrl() ne
+// fonctionne pas (Supabase le construit quand même, mais la requête échoue
+// silencieusement — RLS bloque, indépendamment du token — ce qui produit un
+// lien mort/404 côté client). Il faut une URL signée, valable temporairement
+// et vérifiée côté serveur selon les policies storage.objects du bucket.
+export async function getSignedUrl(bucket, path, expiresIn = 3600) {
+  const { data, error } = await supabase.storage.from(bucket).createSignedUrl(path, expiresIn)
+  return { url: data?.signedUrl ?? null, error }
+}
+
 // --- SuperAdmin : médiathèque (bucket public "site-assets") ---
 
 export async function listMediaFiles(folder = '') {
