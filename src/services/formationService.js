@@ -52,7 +52,9 @@ export async function fetchClassroomData(formationId, userId) {
   const [modulesRes, meetRes, progressRes, resourcesRes] = await Promise.all([
     supabase
       .from('formation_modules')
-      .select('id, title, description, order_index, lessons(id, title, description, content, video_url, pdf_url, external_link, duration, order_index, status)')
+      .select(
+        'id, title, description, order_index, lessons(id, title, description, content, video_url, pdf_url, external_link, duration, order_index, status, quizzes(id))'
+      )
       .eq('formation_id', formationId)
       .order('order_index', { ascending: true }),
     supabase.from('formation_meet_links').select('meet_link').eq('formation_id', formationId).maybeSingle(),

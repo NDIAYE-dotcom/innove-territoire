@@ -5,6 +5,7 @@ import ErrorState from '../../components/common/ErrorState'
 import EmptyState from '../../components/common/EmptyState'
 import AppLogo from '../../components/common/AppLogo'
 import ClassroomSidebar from '../../components/classroom/ClassroomSidebar'
+import ClassroomOverview from '../../components/classroom/ClassroomOverview'
 import LessonViewer from '../../components/classroom/LessonViewer'
 import useAuth from '../../hooks/useAuth'
 import { fetchFormationBySlug, fetchClassroomData, toggleLessonProgress } from '../../services/formationService'
@@ -37,8 +38,9 @@ function Classroom() {
         return
       }
 
-      const firstLesson = classroom.modules.flatMap((module) => module.lessons)[0]
-      setSelectedLessonId(firstLesson?.id ?? null)
+      // Démarre sur la vue d'ensemble plutôt que sur la Leçon 1 directement —
+      // retour utilisateur : l'apprenant tombait dans le contenu sans contexte
+      // ni repères sur la structure du cours.
       setState({ status: 'ready', formation, ...classroom })
     }
 
@@ -124,6 +126,7 @@ function Classroom() {
           completedLessonIds={completedLessonIds}
           selectedLessonId={selectedLessonId}
           onSelectLesson={setSelectedLessonId}
+          onShowOverview={() => setSelectedLessonId(null)}
           progressPercent={progressPercent}
         />
 
@@ -132,6 +135,15 @@ function Classroom() {
             <EmptyState
               title="Le contenu de cette formation n'est pas encore disponible"
               description="Les modules et leçons seront publiés prochainement par le cabinet."
+            />
+          ) : !selectedLesson ? (
+            <ClassroomOverview
+              formation={state.formation}
+              modules={state.modules}
+              totalLessons={allLessons.length}
+              completedCount={completedLessonIds.size}
+              meetLink={state.meetLink}
+              onStart={() => setSelectedLessonId(allLessons[0].id)}
             />
           ) : (
             <LessonViewer
