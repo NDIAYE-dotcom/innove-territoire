@@ -6,7 +6,24 @@ function isDirectVideoFile(url) {
   return /\.(mp4|webm|ogg)$/i.test(url)
 }
 
-function LessonViewer({ lesson, resources, isCompleted, onToggleComplete, toggling }) {
+// Convention légère pour du contenu structuré : une ligne préfixée par "## "
+// s'affiche comme un sous-titre plutôt qu'un paragraphe — évite qu'un cours
+// dense (ex. plan en 1.1/1.2, Section/Paragraphe) ne devienne un mur de texte
+// indifférencié. Le préfixe est retiré à l'affichage.
+function renderContentLine(line, index) {
+  if (line.startsWith('## ')) {
+    // eslint-disable-next-line react/no-array-index-key
+    return <h3 key={index}>{line.slice(3)}</h3>
+  }
+  // eslint-disable-next-line react/no-array-index-key
+  return <p key={index}>{line}</p>
+}
+
+function hasQuiz(lesson) {
+  return Array.isArray(lesson.quizzes) ? lesson.quizzes.length > 0 : Boolean(lesson.quizzes)
+}
+
+function LessonViewer({ lesson, moduleTitle, lessonNumber, resources, isCompleted, onToggleComplete, toggling, onQuizSubmitted }) {
   if (!lesson) {
     return (
       <div className="lesson-viewer lesson-viewer--empty">
@@ -17,6 +34,12 @@ function LessonViewer({ lesson, resources, isCompleted, onToggleComplete, toggli
 
   return (
     <div className="lesson-viewer">
+      {moduleTitle && (
+        <p className="lesson-viewer-breadcrumb">
+          {moduleTitle} {lessonNumber ? `· Leçon ${lessonNumber}` : ''}
+        </p>
+      )}
+
       <div className="lesson-viewer-header">
         <h1>{lesson.title}</h1>
         <Button variant={isCompleted ? 'outline' : 'primary'} onClick={onToggleComplete} loading={toggling}>
@@ -25,6 +48,14 @@ function LessonViewer({ lesson, resources, isCompleted, onToggleComplete, toggli
       </div>
 
       {lesson.description && <p className="lesson-viewer-description">{lesson.description}</p>}
+
+      {!isCompleted && (
+        <p className="lesson-viewer-unlock-hint">
+          {hasQuiz(lesson)
+            ? 'Marquez cette leçon comme terminée et validez le quiz ci-dessous pour débloquer la suite.'
+            : 'Marquez cette leçon comme terminée pour débloquer la suite.'}
+        </p>
+      )}
 
       {lesson.video_url && (
         <div className="lesson-viewer-video">
@@ -38,12 +69,7 @@ function LessonViewer({ lesson, resources, isCompleted, onToggleComplete, toggli
       )}
 
       {lesson.content && (
-        <div className="lesson-viewer-content">
-          {lesson.content.split('\n').map((paragraph, index) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <p key={index}>{paragraph}</p>
-          ))}
-        </div>
+        <div className="lesson-viewer-content">{lesson.content.split('\n').map(renderContentLine)}</div>
       )}
 
       {lesson.pdf_url && (
@@ -73,7 +99,7 @@ function LessonViewer({ lesson, resources, isCompleted, onToggleComplete, toggli
         </div>
       )}
 
-      <LessonQuiz key={lesson.id} lessonId={lesson.id} />
+      <LessonQuiz key={lesson.id} lessonId={lesson.id} onSubmitted={onQuizSubmitted} />
     </div>
   )
 }

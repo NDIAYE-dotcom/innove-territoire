@@ -5,10 +5,20 @@ function hasQuiz(lesson) {
   return Array.isArray(lesson.quizzes) ? lesson.quizzes.length > 0 : Boolean(lesson.quizzes)
 }
 
+function LockIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" aria-hidden="true" {...props}>
+      <rect x="5" y="10" width="14" height="10" rx="2" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  )
+}
+
 function ClassroomSidebar({
   formation,
   modules,
   completedLessonIds,
+  unlockedLessonIds,
   selectedLessonId,
   onSelectLesson,
   onShowOverview,
@@ -45,11 +55,13 @@ function ClassroomSidebar({
         {modules.map((module, moduleIndex) => {
           const isExpanded = expandedModuleId === module.id
           const completedInModule = module.lessons.filter((lesson) => completedLessonIds.has(lesson.id)).length
+          const moduleUnlocked = module.lessons.some((lesson) => unlockedLessonIds.has(lesson.id))
 
           return (
             <div className={`classroom-module ${isExpanded ? 'is-expanded' : ''}`} key={module.id}>
               <button type="button" className="classroom-module-toggle" onClick={() => toggleModule(module.id)}>
                 <span className="classroom-module-title">
+                  {!moduleUnlocked && <LockIcon className="classroom-module-lock" />}
                   {String(moduleIndex + 1).padStart(2, '0')} — {module.title}
                 </span>
                 <span className="classroom-module-meta">
@@ -72,18 +84,21 @@ function ClassroomSidebar({
                   {module.lessons.map((lesson, lessonIndex) => {
                     const isCompleted = completedLessonIds.has(lesson.id)
                     const isSelected = lesson.id === selectedLessonId
+                    const isLocked = !unlockedLessonIds.has(lesson.id)
                     return (
                       <li key={lesson.id}>
                         <button
                           type="button"
-                          className={`classroom-lesson-link ${isSelected ? 'classroom-lesson-link--active' : ''}`}
+                          className={`classroom-lesson-link ${isSelected ? 'classroom-lesson-link--active' : ''} ${isLocked ? 'classroom-lesson-link--locked' : ''}`}
                           onClick={() => onSelectLesson(lesson.id)}
+                          disabled={isLocked}
+                          title={isLocked ? 'Terminez la leçon précédente (et son quiz) pour débloquer' : undefined}
                         >
                           <span className={`classroom-lesson-check ${isCompleted ? 'classroom-lesson-check--done' : ''}`}>
-                            {isCompleted ? '✓' : lessonIndex + 1}
+                            {isCompleted ? '✓' : isLocked ? <LockIcon /> : lessonIndex + 1}
                           </span>
                           <span className="classroom-lesson-label">{lesson.title}</span>
-                          {hasQuiz(lesson) && <span className="classroom-lesson-quiz-badge">Quiz</span>}
+                          {hasQuiz(lesson) && !isLocked && <span className="classroom-lesson-quiz-badge">Quiz</span>}
                         </button>
                       </li>
                     )

@@ -299,8 +299,11 @@ function FormationFormModal({ isOpen, onClose, onSaved, formationId }) {
               <input id="title" name="title" value={form.title} onChange={handleChange} required />
             </div>
             <div>
-              <label htmlFor="slug">Slug (URL)</label>
+              <label htmlFor="slug">Slug (adresse publique de la page)</label>
               <input id="slug" name="slug" value={form.slug} onChange={handleSlugChange} required />
+              <p className="admin-field-hint">
+                Ex : mon-cours — pas le lien Google Meet, qui se règle dans "Modules & leçons".
+              </p>
             </div>
           </div>
 

@@ -78,6 +78,10 @@ export async function fetchClassroomData(formationId, userId) {
   }
 }
 
+export function fetchMyQuizAttempts(userId) {
+  return supabase.from('quiz_attempts').select('quiz_id, score, total_questions').eq('user_id', userId)
+}
+
 export function fetchLessonResources(lessonId) {
   return supabase.from('course_resources').select('id, title, file_url, resource_type').eq('lesson_id', lessonId)
 }

@@ -6,7 +6,7 @@ import './LessonQuiz.css'
 
 // Remonté (via key sur lessonId, côté appelant) à chaque changement de leçon —
 // évite de resynchroniser quiz/tentative avec un useEffect + setState.
-function LessonQuiz({ lessonId }) {
+function LessonQuiz({ lessonId, onSubmitted }) {
   const { user } = useAuth()
   const [state, setState] = useState({ status: 'loading', quiz: null, attempt: null })
   const [answers, setAnswers] = useState({})
@@ -105,6 +105,7 @@ function LessonQuiz({ lessonId }) {
     }
 
     setSubmitResult(data)
+    onSubmitted?.(quiz.id)
   }
 
   return (

@@ -18,7 +18,7 @@ function formatSchedule(formation) {
 // l'apprenant tombe directement sur la Leçon 1 sans comprendre la structure
 // du cours (retour utilisateur : "l'étudiant vient et il voit tout sans
 // comprendre").
-function ClassroomOverview({ formation, modules, totalLessons, completedCount, meetLink, onStart }) {
+function ClassroomOverview({ formation, modules, totalLessons, completedCount, meetLink, unlockedLessonIds, onStart }) {
   const schedule = formatSchedule(formation)
 
   return (
@@ -45,17 +45,23 @@ function ClassroomOverview({ formation, modules, totalLessons, completedCount, m
           <section className="classroom-overview-card">
             <h2>Programme</h2>
             <ol className="classroom-overview-modules">
-              {modules.map((module, index) => (
-                <li key={module.id}>
-                  <span className="classroom-overview-module-index">{String(index + 1).padStart(2, '0')}</span>
-                  <div>
-                    <p className="classroom-overview-module-title">{module.title}</p>
-                    <p className="classroom-overview-module-meta">
-                      {module.lessons.length} leçon{module.lessons.length > 1 ? 's' : ''}
-                    </p>
-                  </div>
-                </li>
-              ))}
+              {modules.map((module, index) => {
+                const isLocked = !module.lessons.some((lesson) => unlockedLessonIds.has(lesson.id))
+                return (
+                  <li key={module.id} className={isLocked ? 'is-locked' : ''}>
+                    <span className="classroom-overview-module-index">{String(index + 1).padStart(2, '0')}</span>
+                    <div>
+                      <p className="classroom-overview-module-title">
+                        {module.title}
+                        {isLocked && <span className="classroom-overview-module-lock">🔒</span>}
+                      </p>
+                      <p className="classroom-overview-module-meta">
+                        {module.lessons.length} leçon{module.lessons.length > 1 ? 's' : ''}
+                      </p>
+                    </div>
+                  </li>
+                )
+              })}
             </ol>
           </section>
 

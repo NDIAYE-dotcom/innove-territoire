@@ -90,12 +90,20 @@
 }
 
 .classroom-module-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.03em;
   color: var(--text);
   text-align: left;
+}
+
+.classroom-module-lock {
+  flex-shrink: 0;
+  color: var(--muted);
 }
 
 .classroom-module-meta {
@@ -136,6 +144,15 @@
   background: var(--primary);
   color: var(--white);
   font-weight: 600;
+}
+
+.classroom-lesson-link--locked {
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
+.classroom-lesson-link--locked:hover {
+  background: none;
 }
 
 .classroom-lesson-label {

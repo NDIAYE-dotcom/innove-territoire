@@ -10,6 +10,15 @@
   color: var(--muted);
 }
 
+.lesson-viewer-breadcrumb {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--secondary);
+  margin-bottom: 10px;
+}
+
 .lesson-viewer-header {
   display: flex;
   align-items: flex-start;
@@ -24,6 +33,16 @@
 
 .lesson-viewer-description {
   font-size: 1rem;
+  margin-bottom: 24px;
+}
+
+.lesson-viewer-unlock-hint {
+  display: inline-block;
+  font-size: 0.82rem;
+  color: var(--text-light);
+  background: var(--accent);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
   margin-bottom: 24px;
 }
 
@@ -52,6 +71,21 @@
 .lesson-viewer-content p {
   color: var(--text);
   line-height: 1.7;
+}
+
+.lesson-viewer-content h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-top: 10px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.lesson-viewer-content h3:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
 }
 
 .lesson-viewer-resource-link {

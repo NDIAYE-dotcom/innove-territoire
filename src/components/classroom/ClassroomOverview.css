@@ -91,6 +91,16 @@
   font-size: 0.92rem;
 }
 
+.classroom-overview-modules li.is-locked .classroom-overview-module-title,
+.classroom-overview-modules li.is-locked .classroom-overview-module-index {
+  color: var(--muted);
+}
+
+.classroom-overview-module-lock {
+  margin-left: 8px;
+  font-size: 0.8rem;
+}
+
 .classroom-overview-module-meta {
   font-size: 0.8rem;
   color: var(--muted);
