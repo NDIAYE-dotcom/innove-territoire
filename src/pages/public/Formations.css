@@ -1,0 +1,32 @@
+.formations-hero {
+  padding: 72px 0 56px;
+  background: var(--light);
+  border-bottom: 1px solid var(--border);
+}
+
+.formations-hero h1 {
+  margin: 14px 0 18px;
+}
+
+.formations-hero-text {
+  max-width: 640px;
+  font-size: 1.05rem;
+}
+
+.formations-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 1024px) {
+  .formations-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .formations-grid {
+    grid-template-columns: 1fr;
+  }
+}

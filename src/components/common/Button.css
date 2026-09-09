@@ -1,0 +1,105 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+  white-space: nowrap;
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn--md {
+  padding: 13px 26px;
+  font-size: 0.95rem;
+}
+
+.btn--sm {
+  padding: 9px 18px;
+  font-size: 0.85rem;
+}
+
+.btn--lg {
+  padding: 16px 34px;
+  font-size: 1rem;
+}
+
+/* "Bouton principal" de la charte : vert territoire, survol vert dynamique. */
+.btn--primary {
+  background: var(--secondary);
+  color: var(--white);
+  border: 1px solid var(--secondary);
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: var(--secondary-light);
+  border-color: var(--secondary-light);
+}
+
+.btn--secondary {
+  background: var(--secondary);
+  color: var(--white);
+  border: 1px solid var(--secondary);
+}
+
+.btn--secondary:hover:not(:disabled) {
+  background: var(--secondary-light);
+  border-color: var(--secondary-light);
+}
+
+/* "Bouton secondaire" de la charte : fond blanc, bordure et texte verts. */
+.btn--outline {
+  background: transparent;
+  color: var(--secondary);
+  border: 1px solid var(--secondary);
+}
+
+.btn--outline:hover:not(:disabled) {
+  background: var(--accent);
+  border-color: var(--secondary-dark);
+  color: var(--secondary-dark);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid transparent;
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background: var(--light);
+}
+
+.btn--danger {
+  background: var(--error);
+  color: var(--white);
+  border: 1px solid var(--error);
+}
+
+.btn--danger:hover:not(:disabled) {
+  background: #93201a;
+  border-color: #93201a;
+}
+
+.btn-spinner {
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+.btn--loading .btn-label {
+  opacity: 0.85;
+}

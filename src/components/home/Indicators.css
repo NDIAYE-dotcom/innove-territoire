@@ -1,0 +1,36 @@
+.indicators {
+  padding: 48px 0;
+  background: var(--primary);
+}
+
+.indicators-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  text-align: center;
+}
+
+.indicator {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.indicator-value {
+  font-family: var(--font-heading);
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.indicator-label {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+@media (max-width: 768px) {
+  .indicators-grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 32px;
+  }
+}

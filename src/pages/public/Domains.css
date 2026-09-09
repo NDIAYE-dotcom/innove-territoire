@@ -1,0 +1,53 @@
+.domains-hero {
+  padding: 72px 0 56px;
+  background: var(--light);
+  border-bottom: 1px solid var(--border);
+}
+
+.domains-hero h1 {
+  margin: 14px 0 18px;
+}
+
+.domains-hero-text {
+  max-width: 640px;
+  font-size: 1.05rem;
+}
+
+.domains-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.domains-cta {
+  background: var(--dark);
+}
+
+.domains-cta h2 {
+  color: var(--white);
+}
+
+.domains-cta-text {
+  max-width: 480px;
+  margin: 14px auto 28px;
+  color: rgba(244, 247, 249, 0.7);
+}
+
+.domains-cta-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1024px) {
+  .domains-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .domains-grid {
+    grid-template-columns: 1fr;
+  }
+}

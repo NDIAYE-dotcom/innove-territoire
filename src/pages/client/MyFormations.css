@@ -1,0 +1,30 @@
+.my-formations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.my-formation-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+}
+
+.my-formation-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.my-formation-card-header h3 {
+  font-size: 1rem;
+}
+
+.my-formation-meta {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 8px;
+}

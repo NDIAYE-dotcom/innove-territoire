@@ -1,0 +1,91 @@
+.formation-info-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.formation-info-block {
+  margin-bottom: 32px;
+}
+
+.formation-info-block h2 {
+  font-size: 1.15rem;
+  margin-bottom: 12px;
+}
+
+.formation-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formation-info-list li {
+  position: relative;
+  padding-left: 20px;
+  color: var(--text-light);
+  font-size: 0.94rem;
+}
+
+.formation-info-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--secondary);
+}
+
+.formation-info-sidebar {
+  position: sticky;
+  top: 100px;
+  background: var(--light);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+}
+
+.formation-info-sidebar h2 {
+  font-size: 1rem;
+  margin-bottom: 18px;
+}
+
+.formation-info-sidebar-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+
+.formation-info-sidebar-row:last-child {
+  border-bottom: none;
+}
+
+.formation-info-sidebar-row dt {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.formation-info-sidebar-row dd {
+  color: var(--text);
+  text-align: right;
+}
+
+.formation-info-sidebar > .formation-enrollment {
+  margin-top: 20px;
+  border: none;
+  padding: 0;
+}
+
+@media (max-width: 1024px) {
+  .formation-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .formation-info-sidebar {
+    position: static;
+  }
+}

@@ -1,0 +1,73 @@
+.formation-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.formation-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.formation-card-image {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--light);
+}
+
+.formation-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.formation-card-image-fallback {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  opacity: 0.15;
+}
+
+.formation-card-status {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: var(--white);
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  box-shadow: var(--shadow-sm);
+}
+
+.formation-card-body {
+  padding: 24px;
+}
+
+.formation-card-title {
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
+
+.formation-card-description {
+  font-size: 0.88rem;
+  margin-bottom: 16px;
+}
+
+.formation-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.formation-card-meta li {
+  font-size: 0.78rem;
+  color: var(--muted);
+  background: var(--light);
+  padding: 4px 10px;
+  border-radius: 999px;
+}

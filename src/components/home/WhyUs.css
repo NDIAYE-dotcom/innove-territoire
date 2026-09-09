@@ -1,0 +1,47 @@
+.why-us {
+  background: var(--dark);
+}
+
+.why-us .section-eyebrow {
+  color: var(--secondary-light);
+}
+
+.why-us h2 {
+  color: var(--white);
+}
+
+.why-us-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.why-us-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  padding: 26px;
+}
+
+.why-us-card h3 {
+  color: var(--white);
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.why-us-card p {
+  color: rgba(244, 247, 249, 0.68);
+  font-size: 0.88rem;
+}
+
+@media (max-width: 1024px) {
+  .why-us-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .why-us-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,43 @@
+.service-requests-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.service-request-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+}
+
+.service-request-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.service-request-number {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 0.92rem;
+}
+
+.service-request-subject {
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 4px;
+}
+
+.service-request-service {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-bottom: 8px;
+}
+
+.service-request-date {
+  font-size: 0.78rem;
+  color: var(--muted);
+}

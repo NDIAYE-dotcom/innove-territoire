@@ -1,0 +1,29 @@
+.formation-enrollment {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.formation-enrollment--guest p {
+  font-size: 0.92rem;
+}
+
+.formation-enrollment-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.formation-enrollment-note {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.formation-enrollment-cta {
+  width: 100%;
+}

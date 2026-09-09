@@ -1,0 +1,28 @@
+.profile-form {
+  max-width: 640px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+}
+
+.profile-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.profile-form .form-field input:disabled {
+  background: var(--light);
+  color: var(--muted);
+}
+
+@media (max-width: 640px) {
+  .profile-form {
+    padding: 22px;
+  }
+
+  .profile-form-row {
+    grid-template-columns: 1fr;
+  }
+}

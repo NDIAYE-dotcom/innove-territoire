@@ -1,0 +1,16 @@
+.cta-banner {
+  background: var(--primary);
+  padding: 88px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.cta-banner-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cta-banner-inner h2 {
+  color: var(--white);
+  margin-bottom: 32px;
+}

@@ -1,0 +1,250 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  background-color: var(--white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Empêche les décalages horizontaux (ex. offset -40px des .reveal avant
+   apparition) de créer un scroll horizontal fantôme. Scopé à <main> — pas à
+   html/body — car le header sticky est un SIBLING de <main> : un ancêtre
+   commun avec overflow non-visible casse position:sticky (bug vécu : le
+   header scrollait hors écran au lieu de rester collé en haut). */
+main {
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  color: var(--dark);
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 4vw, 3.5rem);
+}
+
+h2 {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+p {
+  color: var(--text-light);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 2px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 96px 0;
+}
+
+.section-header {
+  max-width: 720px;
+  margin: 0 auto 64px;
+  text-align: center;
+}
+
+/* Hiérarchie de taille volontairement inversée (retour utilisateur) : le
+   label ("Notre offre", "Qui sommes-nous"...) est le grand titre visuel,
+   le h2/h1 qui suit devient la légende — appliqué ici pour .section-header
+   (sections de la page d'accueil) et plus bas pour les hero de page
+   (.services-hero, .domains-hero, etc.) via une liste de sélecteurs partagée. */
+.section-header h2,
+.presentation-intro h2,
+.services-hero h1,
+.domains-hero h1,
+.formations-hero h1,
+.contact-hero h1,
+.about-hero h1 {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: var(--text-light);
+}
+
+.section-header p {
+  margin-top: 18px;
+  font-size: 1.05rem;
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--secondary);
+  margin-bottom: 16px;
+}
+
+.section-header .section-eyebrow,
+.presentation-intro .section-eyebrow,
+.services-hero .section-eyebrow,
+.domains-hero .section-eyebrow,
+.formations-hero .section-eyebrow,
+.contact-hero .section-eyebrow,
+.about-hero .section-eyebrow {
+  font-size: clamp(2.25rem, 4.2vw, 3.25rem);
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  line-height: 1.15;
+  color: var(--secondary);
+}
+
+.section-header .section-eyebrow::before,
+.presentation-intro .section-eyebrow::before,
+.services-hero .section-eyebrow::before,
+.domains-hero .section-eyebrow::before,
+.formations-hero .section-eyebrow::before,
+.contact-hero .section-eyebrow::before,
+.about-hero .section-eyebrow::before {
+  width: 44px;
+  height: 4px;
+  background: var(--secondary);
+}
+
+.section-eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 2px;
+  flex-shrink: 0;
+  background: var(--secondary);
+  border-radius: 2px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.form-field label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: 0.94rem;
+  background: var(--white);
+  transition: border-color var(--transition-fast);
+  resize: vertical;
+}
+
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+  border-color: var(--primary);
+}
+
+.form-field--checkbox label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-weight: 400;
+  font-size: 0.88rem;
+  color: var(--text-light);
+}
+
+.form-field--checkbox input {
+  margin-top: 3px;
+}
+
+.form-error {
+  font-size: 0.8rem;
+  color: var(--error);
+}
+
+.form-error--global {
+  margin-bottom: 16px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

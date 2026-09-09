@@ -1,0 +1,14 @@
+.app-logo {
+  display: inline-flex;
+  align-items: center;
+}
+
+.app-logo-image {
+  height: 44px;
+  width: auto;
+  display: block;
+}
+
+.app-logo--light .app-logo-image {
+  filter: brightness(0) invert(1);
+}

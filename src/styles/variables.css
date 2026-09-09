@@ -1,0 +1,48 @@
+/* Charte graphique officielle fournie par le client (2026-08-26) — palette
+   exacte à respecter, ne pas dévier de ces valeurs. Remplace la palette
+   provisoire échantillonnée sur le logo. */
+:root {
+  /* Couleurs principales */
+  --primary: #11202d; /* Bleu nuit */
+  --primary-dark: #091017;
+  --primary-light: #2e4f6c;
+
+  --secondary: #1a7a06; /* Vert territoire */
+  --secondary-dark: #125304;
+  --secondary-light: #25a244; /* Vert dynamique (hover) */
+
+  --accent: #dff2e3; /* Vert nature — badges, zones mises en avant */
+
+  /* Couleurs neutres */
+  --dark: #11202d;
+  --light: #f8faf9; /* Fond principal */
+  --bg-alt: #eef2f1; /* Fond secondaire / gris très clair */
+  --white: #ffffff;
+
+  --text: #17212b; /* Texte principal */
+  --text-light: #64717a; /* Texte secondaire / gris ardoise */
+  --muted: #8a96a0;
+  --border: #d9e1de;
+
+  --success: #1a7a06;
+  --warning: #c77f17;
+  --error: #b3261e;
+  --info: #1b5a85;
+
+  --font-heading: 'Sora', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --shadow-sm: 0 1px 3px rgba(17, 32, 45, 0.08);
+  --shadow-md: 0 8px 24px rgba(17, 32, 45, 0.1);
+  --shadow-lg: 0 20px 48px rgba(17, 32, 45, 0.14);
+
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+
+  --container-max: 1280px;
+  --header-height: 84px;
+}

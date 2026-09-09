@@ -1,0 +1,92 @@
+.lesson-viewer {
+  max-width: 760px;
+}
+
+.lesson-viewer--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40vh;
+  color: var(--muted);
+}
+
+.lesson-viewer-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 16px;
+}
+
+.lesson-viewer-header h1 {
+  font-size: 1.6rem;
+}
+
+.lesson-viewer-description {
+  font-size: 1rem;
+  margin-bottom: 24px;
+}
+
+.lesson-viewer-video {
+  margin-bottom: 24px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--dark);
+}
+
+.lesson-viewer-video video,
+.lesson-viewer-video iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  display: block;
+}
+
+.lesson-viewer-content {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.lesson-viewer-content p {
+  color: var(--text);
+  line-height: 1.7;
+}
+
+.lesson-viewer-resource-link {
+  display: inline-block;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.92rem;
+  margin-bottom: 12px;
+}
+
+.lesson-viewer-resources {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.lesson-viewer-resources h2 {
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
+.lesson-viewer-resources ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lesson-viewer-resources a {
+  color: var(--primary);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 640px) {
+  .lesson-viewer-header {
+    flex-direction: column;
+  }
+}

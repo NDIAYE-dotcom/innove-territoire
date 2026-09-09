@@ -1,0 +1,33 @@
+.presentation-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+.presentation-text {
+  margin-top: 18px;
+  font-size: 1rem;
+}
+
+.presentation-objective {
+  background: var(--light);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+}
+
+.presentation-objective h3 {
+  font-size: 1.1rem;
+  margin-bottom: 14px;
+}
+
+.presentation-objective p {
+  margin-bottom: 24px;
+  font-size: 0.92rem;
+}
+
+@media (max-width: 1024px) {
+  .presentation-grid {
+    grid-template-columns: 1fr;
+  }
+}

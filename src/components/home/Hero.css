@@ -1,0 +1,78 @@
+.hero {
+  position: relative;
+  min-height: 94vh;
+  display: flex;
+  align-items: center;
+  padding: calc(var(--header-height) + 48px) 0 96px;
+  background:
+    linear-gradient(100deg, rgba(17, 32, 45, 0.88) 0%, rgba(17, 32, 45, 0.68) 34%, rgba(17, 32, 45, 0.34) 62%, rgba(17, 32, 45, 0.12) 100%),
+    url('/assets/herosection.png') center 32% / cover no-repeat;
+}
+
+.hero-inner {
+  position: relative;
+  max-width: 680px;
+}
+
+.hero-eyebrow {
+  color: var(--secondary-light);
+}
+
+.hero-eyebrow::before {
+  background: var(--secondary-light);
+}
+
+.hero-title {
+  color: var(--white);
+  margin: 20px 0 26px;
+}
+
+.hero-title-accent {
+  color: var(--secondary-light);
+}
+
+.hero-text {
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin-bottom: 40px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.hero-actions .btn {
+  border-radius: 999px;
+  padding: 16px 32px;
+}
+
+.hero-actions .btn--outline {
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.55);
+  background: transparent;
+}
+
+.hero-actions .btn--outline:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: var(--white);
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: unset;
+    padding: calc(var(--header-height) + 36px) 0 64px;
+    background-position: 70% 32%;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+}

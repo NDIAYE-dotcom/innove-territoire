@@ -1,0 +1,49 @@
+.admin-module-panel {
+  margin-top: 20px;
+}
+
+.admin-module-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.admin-module-description {
+  color: var(--text-light);
+  font-size: 0.88rem;
+  margin-top: 4px;
+}
+
+.admin-module-empty {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.admin-lesson-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-lesson-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 14px;
+  background: var(--light);
+  border-radius: var(--radius-sm);
+}
+
+.admin-lesson-item > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-lesson-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+}

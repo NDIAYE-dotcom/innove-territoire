@@ -1,0 +1,54 @@
+.formation-hero {
+  padding: 64px 0;
+  background: var(--light);
+  border-bottom: 1px solid var(--border);
+}
+
+.formation-hero-inner {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.formation-hero-text h1 {
+  margin: 12px 0 14px;
+}
+
+.formation-hero-description {
+  font-size: 1.02rem;
+  margin-bottom: 20px;
+}
+
+.formation-hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.formation-hero-tag {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-light);
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+.formation-hero-image img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
+
+@media (max-width: 1024px) {
+  .formation-hero-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .formation-hero-image {
+    order: -1;
+  }
+}
